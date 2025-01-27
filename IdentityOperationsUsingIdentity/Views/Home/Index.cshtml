@@ -1,0 +1,27 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    @if (User.Identity!.IsAuthenticated)
+    {
+        <p>Hello, @User.Identity.Name!</p>
+        @if (User.IsInRole("Admin"))
+        {
+            <p>You have admin access</p>
+        }
+        @if (User.IsInRole("Manager"))
+        {
+            <p>You have manager access</p>
+        }
+        @if (User.IsInRole("User"))
+        {
+            <p>You have User access</p>
+        }
+    }
+    else
+    {
+        <p>Please <a asp-controller="Account" asp-action="Login">login</a> or <a asp-controller="Account" asp-action="Register">register</a></p>
+    }
+</div>
